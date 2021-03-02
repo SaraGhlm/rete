@@ -1,3 +1,5 @@
+import { EditorEvents, EventsTypes } from './events';
+
 import { Component } from './component';
 import { Connection } from './connection';
 import { Context } from './core/context';
@@ -5,11 +7,9 @@ import { Data } from './core/data';
 import { EditorView } from './view/index';
 import { Input } from './input';
 import { Node } from './node';
-import { Output } from './output';
 import { Selected } from './selected';
 import { Validator } from './core/validator';
 import { listenWindow } from './view/utils';
-import { EditorEvents, EventsTypes } from './events';
 
 export class NodeEditor extends Context<EventsTypes> {
 
@@ -58,7 +58,7 @@ export class NodeEditor extends Context<EventsTypes> {
         this.trigger('noderemoved', node);
     }
 
-    connect(output: Output, input: Input, data: unknown = {}) {
+    connect(output: Input, input: Input, data: unknown = {}) {
         if (!this.trigger('connectioncreate', { output, input })) return;
 
         try {

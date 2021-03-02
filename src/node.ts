@@ -1,8 +1,8 @@
+import { InputsData, NodeData, OutputsData } from './core/data';
+
 import { Connection } from './connection';
 import { Control } from './control';
 import { Input } from './input';
-import { Output } from './output';
-import { InputsData, NodeData, OutputsData } from './core/data';
 
 export class Node {
 
@@ -10,7 +10,7 @@ export class Node {
     id: number;
     position: [number, number] = [0.0, 0.0];
     inputs = new Map<string, Input>();
-    outputs = new Map<string, Output>();
+    outputs = new Map<string, Input>();
     controls = new Map<string, Control>();
     data: {[key: string]: unknown} = {};
     meta: {[key: string]: unknown} = {};
@@ -55,18 +55,6 @@ export class Node {
         this.inputs.delete(input.key);
     }
 
-    addOutput(output: Output) {
-        this._add(this.outputs, output, 'node');
-        return this;
-    }
-
-    removeOutput(output: Output) {
-        output.removeConnections();
-        output.node = null;
-
-        this.outputs.delete(output.key);
-    }
-
     getConnections() {
         const ios = [...this.inputs.values(), ...this.outputs.values()];
         const connections = ios.reduce((arr, io) => {
@@ -91,7 +79,7 @@ export class Node {
     }
 
     toJSON(): NodeData {
-        const reduceIO = <T extends any>(list: Map<string, Input | Output>) => {
+        const reduceIO = <T extends any>(list: Map<string, Input | Input>) => {
             return Array.from(list).reduce<T>((obj, [key, io]) => {
                 obj[key] = io.toJSON();
                 return obj;

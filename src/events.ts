@@ -1,3 +1,6 @@
+import { EventsTypes as DefaultEventsTypes, Events } from './core/events';
+import { Mouse, Transform, ZoomSource } from './view/area';
+
 import { Component } from './component';
 import { Connection } from './connection';
 import { Control } from './control';
@@ -5,10 +8,7 @@ import { Data } from './core/data';
 import { EditorView } from './view';
 import { Input } from './input';
 import { Node } from './node';
-import { Output } from './output';
 import { Socket } from './socket';
-import { EventsTypes as DefaultEventsTypes, Events } from './core/events';
-import { Mouse, Transform, ZoomSource } from './view/area';
 
 export class EditorEvents extends Events {
 
@@ -59,7 +59,7 @@ export interface EventsTypes extends DefaultEventsTypes {
     nodecreated: Node;
     noderemove: Node;
     noderemoved: Node;
-    connectioncreate: { input: Input; output: Output };
+    connectioncreate: { input: Input; output: Input };
     connectioncreated: Connection;
     connectionremove: Connection;
     connectionremoved: Connection;
@@ -89,7 +89,7 @@ export interface EventsTypes extends DefaultEventsTypes {
     rendersocket: {
         el: HTMLElement;
         input?: Input;
-        output?: Output;
+        output?: Input;
         socket: Socket;
     };
     rendercontrol: {

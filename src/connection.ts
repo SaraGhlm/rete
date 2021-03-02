@@ -1,13 +1,12 @@
 import { Input } from './input';
-import { Output } from './output';
 
 export class Connection {
 
-    output: Output;
+    output: Input;
     input: Input;
     data: unknown = {};
 
-    constructor(output: Output, input: Input) {
+    constructor(output: Input, input: Input) {
         this.output = output;
         this.input = input;
         this.data = {};

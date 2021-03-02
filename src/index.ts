@@ -1,3 +1,5 @@
+import { Engine, Recursion } from './engine/index';
+
 import { Component } from './component';
 import { Connection } from './connection';
 import { Control } from './control';
@@ -6,9 +8,7 @@ import { IO } from './io';
 import { Input } from './input';
 import { Node } from './node';
 import { NodeEditor } from './editor';
-import { Output } from './output';
 import { Socket } from './socket';
-import { Engine, Recursion } from './engine/index';
 
 export { Engine, Recursion } from './engine/index';
 export { Component } from './component';
@@ -19,7 +19,6 @@ export { Input } from './input';
 export { IO } from './io';
 export { Node } from './node';
 export { NodeEditor } from './editor';
-export { Output } from './output';
 export { Socket } from './socket';
 
 export default {
@@ -33,6 +32,5 @@ export default {
     IO,
     Node,
     NodeEditor,
-    Output,
     Socket
 }
